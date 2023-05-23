@@ -1,0 +1,61 @@
+import simplegui
+import random
+global x
+x = 0
+counterone = 0
+countertwo = 0
+counterthree = 0
+counterfour = 0
+sparkles = []
+
+def draw_handler(canvas):
+    for i in range(0, 1):
+        xone = random.randint(0, 600)
+        yone = random.randint(0, 400)
+        sparkles.append((xone, yone))
+    for sparkle in sparkles:
+        canvas.draw_point(sparkle, "white")
+    canvas.draw_polygon([(0, 400), (600, 400), (600, 600), (0, 600)], 1, "green", "green")
+    canvas.draw_polygon([(50, 400), (100, 400), (100, 600), (50, 600)], 1, "#32CD32", "#32CD32")
+    canvas.draw_polygon([(150, 400), (200, 400), (200, 600), (150, 600)], 1, "#32CD32", "#32CD32")
+    canvas.draw_polygon([(250, 400), (300, 400), (300, 600), (250, 600)], 1, "#32CD32", "#32CD32")
+    canvas.draw_polygon([(350, 400), (400, 400), (400, 600), (350, 600)], 1, "#32CD32", "#32CD32")
+    canvas.draw_polygon([(450, 400), (500, 400), (500, 600), (450, 600)], 1, "#32CD32", "#32CD32")
+    canvas.draw_line([550, 400], [550, 600], 5, "#32CD32")
+    canvas.draw_line([555, 400], [555, 600], 6, "#32CD32")
+    canvas.draw_line([560, 400], [560, 600], 5, "#32CD32")
+    canvas.draw_line([565, 400], [565, 600], 10, "#32CD32")
+    canvas.draw_line([580, 400], [580, 600], 45, "#32CD32")
+    global x
+    x = x + 7.5
+    canvas.draw_circle((x, 500), 50, 1, "lightblue", "blue")
+    
+    if x > 650:
+        x = -50
+    
+    global counterone
+    if counterone < 20:
+        counterone = counterone + 1
+        canvas.draw_circle((200, 500), 35, 10, "yellow")
+    global countertwo
+    if countertwo < 40:
+        countertwo = countertwo + 1
+        canvas.draw_circle((325, 500), 35, 10, "yellow")
+    global counterthree
+    if counterthree < 55:
+        counterthree = counterthree + 1
+        canvas.draw_circle((450, 500), 35, 10, "yellow")
+    global counterfour
+    counterfour = counterfour + 1
+    if counterfour > 87.5 and counterfour < 125:
+        canvas.draw_polygon([(250, 550), (350, 550), (350, 450), (250, 450)], 5, "black", "grey")
+        canvas.draw_circle((300, 500), 30, 10, "yellow")
+    
+
+    
+    
+
+frame = simplegui.create_frame('Testing', 600, 600)
+frame.set_canvas_background("#006ee6")
+frame.set_draw_handler(draw_handler)
+frame.start()
